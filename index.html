@@ -69,6 +69,14 @@
       justify-content: center;
       align-items: center;
       box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     /* Rectangular ID Cards */
@@ -83,11 +91,6 @@
       width: 260px;
       height: 260px;
       background: var(--card-bg) center/cover no-repeat;
-    }
-    
-    /* Remove all text elements */
-    .card-content {
-      display: none;
     }
     
     /* Rarity colors */
@@ -179,8 +182,6 @@
       "LCB Sinner Sinclair": "Images/LCBSinclair.png",
       "LCB Sinner Outis": "Images/LCBOutis.png",
       "LCB Sinner Gregor": "Images/LCBGregor.png",
-
-    
       
       // EGOs
       "Ardor Blossom Star (Don Quixote)": "img/ego/ardor_blossom.webp",
@@ -195,27 +196,27 @@
 
     // Banner data
     const banners = {
-      'standard': {
+      standard: {
         name: "Standard Banner",
         rates: { ego: 0.013, tripleZero: 0.029, doubleZero: 0.128, common: 0.83 },
         identities: {
           "3★": ["Ishmael [Seven South Section 6]", "Gregor [LCCB Assistant Manager]", "Outis [R.B. Chef]"],
           "2★": ["Rosespanner Workshop Fixer Gregor", "Liu Association South Section 6 Gregor", "Blade Lineage Salsu Outis",
                  "G Corp Head Manager Outis", "Cinq Association South Section 4 Outis", "The Ring Pointilist Student Outis",
-                 "Zwei Association South Section 6 Sinclair],
+                 "Zwei Association South Section 6 Sinclair"],
           "1★": ["LCB Sinner Faust", "LCB Sinner Yi Sang", "LCB Sinner Don Quixote", "LCB Sinner Ryōshū", 
                  "LCB Sinner Outis", "LCB Sinner Ishmael", "LCB Sinner Heathcliff", "LCB Sinner Gregor", 
                  "LCB Sinner Hong Lu", "LCB Sinner Meursault", "LCB Sinner Rodion", "LCB Sinner Sinclair"]
         },
         egos: ["Ardor Blossom Star (Don Quixote)", "Crow's Eye View (Ryōshū)", "Spicebush (Faust)"]
       },
-      'Super': {
+      "Super": {
         name: "Super Banner",
         rates: { ego: 0.01, tripleZero: 0.05, doubleZero: 0.14, common: 0.80 },
         identities: {
           "3★": ["Ishmael [The Pequod Captain]", "Rodion [R Corp. 4th Pack Rabbit]"],
-          "2★": ["R.B. Sous-Chef Gregor", "Rosespanner Workshop Fixer Gregor", "Liu Association South Section 6 Gregor", "Kurokumo Clan Captain Gregor",
-                 "Blade Lineage Salsu Outis", "G Corp Head Manager Outis", "Cinq Association South Section 4 Outis", "The Ring Pointilist Student Outis",
+          "2★": ["Rosespanner Workshop Fixer Gregor", "Liu Association South Section 6 Gregor", "Blade Lineage Salsu Outis",
+                 "G Corp Head Manager Outis", "Cinq Association South Section 4 Outis", "The Ring Pointilist Student Outis",
                  "Zwei Association South Section 6 Sinclair"],
           "1★": ["LCB Sinner Faust", "LCB Sinner Yi Sang", "LCB Sinner Don Quixote", "LCB Sinner Ryōshū", 
                  "LCB Sinner Outis", "LCB Sinner Ishmael", "LCB Sinner Heathcliff", "LCB Sinner Gregor", 
@@ -223,7 +224,7 @@
         },
         egos: ["4th Match Flame (Ryōshū)"]
       },
-      'Bokgakwalpurgisnight': {
+      "Bokgakwalpurgisnight": {
         name: "1st + 2nd Bokgak Walpurgisnight Targetted Extraction Banner",
         rates: { ego: 0.02, tripleZero: 0.03, doubleZero: 0.10, common: 0.85 },
         identities: {
@@ -235,7 +236,7 @@
         },
         egos: ["Land of Illusion (Hong Lu)", "Sunshower (Heathcliff)"]
       },
-      '6thWalpurgisnight': {
+      "6thWalpurgisnight": {
         name: "6th Walpurgisnight Targetted Extraction Banner",
         rates: { ego: 0.02, tripleZero: 0.03, doubleZero: 0.10, common: 0.85 },
         identities: {
@@ -256,6 +257,7 @@
       egoshards: 0
     };
 
+    // Switch active banner
     function switchBanner(bannerKey) {
       currentBanner = bannerKey;
       document.querySelectorAll(".banner").forEach(b => b.classList.remove("active"));
@@ -292,16 +294,22 @@
       card.className = `card ${rarityClass}`;
       card.style.setProperty('--card-bg', `url('${imageMap[pull.name] || FALLBACK_IMAGE}')`);
       
-      return card; // No text content added
+      return card;
     }
 
-    function drawTen() {
+    async function drawTen() {
       const container = document.getElementById("results");
       container.innerHTML = "";
       const pulls = [];
       let guaranteed = false;
       const banner = banners[currentBanner];
 
+      // Disable button during animation
+      const pullButton = document.querySelector('button');
+      pullButton.disabled = true;
+      pullButton.textContent = "Drawing...";
+
+      // Perform pulls
       for (let i = 0; i < 10; i++) {
         let result = pullOnce();
         state.totalPulls++;
@@ -321,6 +329,7 @@
         pulls.push(result);
       }
 
+      // Apply guarantee if needed
       if (!guaranteed) {
         const replacement = pullOnceWhile(r => r.type !== "1★ ID");
         pulls[9] = replacement;
@@ -330,9 +339,23 @@
         else if (replacement.type === "EGO") state.egoshards += 30;
       }
 
-      const fragment = document.createDocumentFragment();
-      pulls.forEach(pull => fragment.appendChild(createCard(pull)));
-      container.appendChild(fragment);
+      // Animate cards appearing one by one
+      for (let i = 0; i < pulls.length; i++) {
+        const card = createCard(pulls[i]);
+        container.appendChild(card);
+        
+        // Trigger animation after a short delay
+        setTimeout(() => {
+          card.classList.add('show');
+        }, i * 150); // 150ms delay between cards
+        
+        // Small delay to allow DOM updates
+        await new Promise(resolve => setTimeout(resolve, 10));
+      }
+
+      // Re-enable button
+      pullButton.disabled = false;
+      pullButton.textContent = "Perform 10-Pull";
       
       updateStats();
     }
@@ -354,6 +377,22 @@
         <p><strong>Pity Status:</strong> ${state.ideality >= 200 ? "READY" : "Not yet"}</p>
       `;
     }
+
+    // Preload images when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+      const imagesToPreload = [
+        ...Object.values(imageMap),
+        FALLBACK_IMAGE,
+        'Images/Standardbanner.png',
+        'Images/superbanner.jpg',
+        'Images/1stand2ndBokgakwalpurgisnight.png',
+        'Images/6thWalpurgisnight.png'
+      ];
+      
+      imagesToPreload.forEach(src => {
+        new Image().src = src;
+      });
+    });
   </script>
 </body>
 </html>
