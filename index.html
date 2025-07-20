@@ -35,7 +35,7 @@
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      color: white;
+      color: rgb(255, 255, 255);
       text-shadow: 1px 1px 3px #000;
       background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
     }
@@ -105,6 +105,49 @@
       padding: 15px;
       border-radius: 8px;
       display: inline-block;
+      margin-bottom: 20px;
+    }
+    
+    .collection {
+      background: rgba(30,30,30,0.8);
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px auto;
+      max-width: 800px;
+      text-align: left;
+    }
+    
+    .collection h3 {
+      text-align: center;
+      margin-top: 0;
+    }
+    
+    .rarity-section {
+      margin-bottom: 15px;
+    }
+    
+    .rarity-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .identity-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    
+    .identity-item {
+      background: rgba(1, 255, 1, 0.5);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .duplicate-count {
+      font-size: 0.8em;
+      color: #ccc;
+      margin-left: 5px;
     }
     
     button {
@@ -137,15 +180,37 @@
     </div>
     <div class="banner" id="BokgakwalpurgisnightBanner" onclick="switchBanner('Bokgakwalpurgisnight')" 
          style="background-image: url('Images/1stand2ndBokgakwalpurgisnight.png')">
+         WIP
     </div>
     <div class="banner" id="6thWalpurgisnightBanner" onclick="switchBanner('6thWalpurgisnight')" 
          style="background-image: url('Images/6thWalpurgisnight.png')">
+         WIP
     </div>
   </div>
 
   <button onclick="drawTen()">Perform 10-Pull</button>
   <div class="results" id="results"></div>
   <div class="stats" id="stats"></div>
+  
+  <div class="collection" id="collection">
+    <h3>Acquired Identities</h3>
+    <div class="rarity-section">
+      <div class="rarity-title">3★ Identities</div>
+      <div class="identity-list" id="triplezero-list"></div>
+    </div>
+    <div class="rarity-section">
+      <div class="rarity-title">2★ Identities</div>
+      <div class="identity-list" id="doublezero-list"></div>
+    </div>
+    <div class="rarity-section">
+      <div class="rarity-title">1★ Identities</div>
+      <div class="identity-list" id="common-list"></div>
+    </div>
+    <div class="rarity-section">
+      <div class="rarity-title">EGOs</div>
+      <div class="identity-list" id="ego-list"></div>
+    </div>
+  </div>
 
   <script>
     // Image mapping
@@ -156,20 +221,20 @@
       "Outis [R.B. Chef]": "img/ids/outis_3star.webp",
       
       // 2★ IDs
-      "Rosespanner Workshop Fixer Gregor" : "Images/RosespannerGregor.png",
-      "Liu Association South Section 6 Gregor" : "Images/LiuGregor.png",
-      "R.B. Sous-Chef Gregor" : "Images/ChefGregor.png",
-      "Kurokumo Clan Captain Gregor" : "Images/KurokumoGregor.png",
-      "Blade Lineage Salsu Outis" : "Images/BLOutis.png",
-      "G Corp Head Manager Outis" : "Images/GCorpOutis.png",
-      "Cinq Association South Section 4 Outis" : "Images/CinqOutis.png",
-      "The Ring Pointilist Student Outis" : "Images/RingOutis.png",
-      "Zwei Association South Section 6 Sinclair" : "Images/ZweiSouthSinclair.png",
-      "Los Mariachis Jefe Sinclair" : "Images/AidaSinclair.png",
-      "Lobotomy E.G.O::Red Sheet Sinclair" : "Images/TalismanSinclair.png",
-      "Molar Boatworks Fixer Sinclair" : "Images/MolarSinclair.png",
-      "Zwei Association West Section 3 Sinclair" : "Images/ZweiWestSinclair.png",
-
+      "Rosespanner Workshop Fixer Gregor": "Images/RosespannerGregor.png",
+      "Liu Association South Section 6 Gregor": "Images/LiuGregor.png",
+      "R.B. Sous-Chef Gregor": "Images/ChefGregor.png",
+      "Kurokumo Clan Captain Gregor": "Images/KurokumoGregor.png",
+      "Blade Lineage Salsu Outis": "Images/BLOutis.png",
+      "G Corp Head Manager Outis": "Images/GCorpOutis.png",
+      "Cinq Association South Section 4 Outis": "Images/CinqOutis.png",
+      "The Ring Pointilist Student Outis": "Images/RingOutis.png",
+      "Zwei Association South Section 6 Sinclair": "Images/ZweiSouthSinclair.png",
+      "Los Mariachis Jefe Sinclair": "Images/AidaSinclair.png",
+      "Lobotomy E.G.O::Red Sheet Sinclair": "Images/TalismanSinclair.png",
+      "Molar Boatworks Fixer Sinclair": "Images/MolarSinclair.png",
+      "Zwei Association West Section 3 Sinclair": "Images/ZweiWestSinclair.png",
+      
       //1★ IDs
       "LCB Sinner Yi Sang": "Images/LCBYiSang.png",
       "LCB Sinner Faust": "Images/LCBFaust.png",
@@ -257,7 +322,12 @@
     let state = {
       totalPulls: 0,
       ideality: 0,
-      egoshards: 0
+      collection: {
+        "3★": new Map(),
+        "2★": new Map(),
+        "1★": new Map(),
+        "EGO": new Map()
+      }
     };
 
     // Switch active banner
@@ -300,6 +370,94 @@
       return card;
     }
 
+    function addToCollection(pull) {
+      let collectionMap;
+      if (pull.type === "EGO") {
+        collectionMap = state.collection["EGO"];
+      } else if (pull.type === "3★ ID") {
+        collectionMap = state.collection["3★"];
+      } else if (pull.type === "2★ ID") {
+        collectionMap = state.collection["2★"];
+      } else if (pull.type === "1★ ID") {
+        collectionMap = state.collection["1★"];
+      }
+
+      // Increment count or add to collection
+      if (collectionMap.has(pull.name)) {
+        collectionMap.set(pull.name, collectionMap.get(pull.name) + 1);
+      } else {
+        collectionMap.set(pull.name, 1);
+      }
+      
+      updateCollectionDisplay();
+    }
+
+    function updateCollectionDisplay() {
+      // Update 3★ list
+      const tripleZeroList = document.getElementById("triplezero-list");
+      tripleZeroList.innerHTML = "";
+      state.collection["3★"].forEach((count, id) => {
+        const item = document.createElement('div');
+        item.className = 'identity-item';
+        item.textContent = id;
+        if (count > 1) {
+          const countSpan = document.createElement('span');
+          countSpan.className = 'duplicate-count';
+          countSpan.textContent = `x${count}`;
+          item.appendChild(countSpan);
+        }
+        tripleZeroList.appendChild(item);
+      });
+
+      // Update 2★ list
+      const doubleZeroList = document.getElementById("doublezero-list");
+      doubleZeroList.innerHTML = "";
+      state.collection["2★"].forEach((count, id) => {
+        const item = document.createElement('div');
+        item.className = 'identity-item';
+        item.textContent = id;
+        if (count > 1) {
+          const countSpan = document.createElement('span');
+          countSpan.className = 'duplicate-count';
+          countSpan.textContent = `x${count}`;
+          item.appendChild(countSpan);
+        }
+        doubleZeroList.appendChild(item);
+      });
+
+      // Update 1★ list
+      const commonList = document.getElementById("common-list");
+      commonList.innerHTML = "";
+      state.collection["1★"].forEach((count, id) => {
+        const item = document.createElement('div');
+        item.className = 'identity-item';
+        item.textContent = id;
+        if (count > 1) {
+          const countSpan = document.createElement('span');
+          countSpan.className = 'duplicate-count';
+          countSpan.textContent = `x${count}`;
+          item.appendChild(countSpan);
+        }
+        commonList.appendChild(item);
+      });
+
+      // Update EGO list
+      const egoList = document.getElementById("ego-list");
+      egoList.innerHTML = "";
+      state.collection["EGO"].forEach((count, ego) => {
+        const item = document.createElement('div');
+        item.className = 'identity-item';
+        item.textContent = ego;
+        if (count > 1) {
+          const countSpan = document.createElement('span');
+          countSpan.className = 'duplicate-count';
+          countSpan.textContent = `x${count}`;
+          item.appendChild(countSpan);
+        }
+        egoList.appendChild(item);
+      });
+    }
+
     async function drawTen() {
       const container = document.getElementById("results");
       container.innerHTML = "";
@@ -318,28 +476,19 @@
         state.totalPulls++;
         state.ideality++;
 
-        if (result.type === "3★ ID") state.egoshards += 50;
-        else if (result.type === "2★ ID") {
-          state.egoshards += 15;
-          guaranteed = true;
-        } else if (result.type === "1★ ID") {
-          state.egoshards += 3;
-        } else if (result.type === "EGO") {
-          state.egoshards += 30;
+        if (result.type === "2★ ID" || result.type === "EGO") {
           guaranteed = true;
         }
 
         pulls.push(result);
+        addToCollection(result);
       }
 
       // Apply guarantee if needed
       if (!guaranteed) {
         const replacement = pullOnceWhile(r => r.type !== "1★ ID");
         pulls[9] = replacement;
-        state.egoshards -= 3;
-        if (replacement.type === "3★ ID") state.egoshards += 50;
-        else if (replacement.type === "2★ ID") state.egoshards += 15;
-        else if (replacement.type === "EGO") state.egoshards += 30;
+        addToCollection(replacement);
       }
 
       // Animate cards appearing one by one
@@ -350,7 +499,7 @@
         // Trigger animation after a short delay
         setTimeout(() => {
           card.classList.add('show');
-        }, i * 200); // 150ms delay between cards
+        }, i * 200);
         
         // Small delay to allow DOM updates
         await new Promise(resolve => setTimeout(resolve, 10));
@@ -376,8 +525,6 @@
         <p><strong>Active Banner:</strong> ${banners[currentBanner].name}</p>
         <p><strong>Total Pulls:</strong> ${state.totalPulls}</p>
         <p><strong>Ideality:</strong> ${state.ideality}/200</p>
-        <p><strong>Egoshards:</strong> ${state.egoshards}</p>
-        <p><strong>Pity Status:</strong> ${state.ideality >= 200 ? "READY" : "Not yet"}</p>
       `;
     }
 
@@ -395,6 +542,9 @@
       imagesToPreload.forEach(src => {
         new Image().src = src;
       });
+
+      // Initialize collection display
+      updateCollectionDisplay();
     });
   </script>
 </body>
