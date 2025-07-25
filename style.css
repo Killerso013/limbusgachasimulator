@@ -1,0 +1,209 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #eee;
+  text-align: center;
+  padding: 20px;
+}
+
+.banners {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.banner {
+  width: 200px;
+  height: 80px;
+  border: 2px solid #444;
+  border-radius: 8px;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.9;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 3px #000;
+  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+}
+
+.banner:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.banner.active {
+  border-color: #ffe100;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  justify-items: center;
+}
+
+.card {
+  width: 200px;
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s;
+  background: var(--card-bg) center/cover no-repeat;
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:not(.ego) {
+  border-radius: 10px;
+}
+.card.ego {
+  border-radius: 50%;
+  width: 260px;
+  height: 260px;
+}
+
+.walpurgisnacht {
+  border-color: #48ff00 !important; /* Purple border color */
+  box-shadow: 0 0 10px #48ff00 !important; /* Optional glow effect */
+}
+
+.walpurgisnacht-ego {
+  border-color: #e74c3c !important; 
+  box-shadow: 0 0 15px rgba(231, 76, 60, 0.7) 
+}
+
+.ego { border-color: #ffe100; }
+.triplezero { border-color: #fdf670; }
+.doublezero { border-color: #f10f05; }
+.common { border-color: #c09e5d; }
+
+.stats {
+  margin-top: 20px;
+  background: rgba(30,30,30,0.8);
+  padding: 15px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.collection {
+  background: rgba(30,30,30,0.8);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 800px;
+  text-align: left;
+}
+
+.collection h3 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.rarity-section {
+  margin-bottom: 15px;
+}
+
+.rarity-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.identity-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.identity-item {
+  background: rgba(0,100,0,0.5);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.duplicate-count {
+  font-size: 0.8em;
+  color: #ccc;
+  margin-left: 5px;
+}
+
+.shards-container {
+  background: rgba(30,30,30,0.8);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.shards-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.shard-item {
+  background: rgba(50,50,50,0.7);
+  padding: 8px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.shard-icon {
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.shard-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.shard-count {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #666;
+}
