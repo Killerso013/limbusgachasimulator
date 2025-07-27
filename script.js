@@ -72,7 +72,13 @@ const imageMap = {
   "LCB Sinner Gregor": "Images/LCBGregor.png",
   
   // EGOs
-  "4th Match Flame (Ryoshu)": "Images/4thMatchFlameRyoshu.png"
+  "4th Match Flame (Ryoshu)": "Images/4thMatchFlameRyoshu.png",
+  "Contempt, Awe (Ryoshu)": "Images/ContemptAweRyoshu.png",
+  "Everlasting (Faust)": "Images/EverlastingFaust.png",
+  "Tears of the Tarnished Blood [汚血泣淚] (Hong Lu)" : "Images/TearsOfTheTarnishedBloodHongLu.png",
+  "Binds (Heathcliff)": "Images/BindsHeathcliff.png",
+  "Blind Obession (Ishmael)": "Images/BlindObessionIshmael.png",
+  "In the Name of Love and Hate (Don Quixote)": "Images/InTheNameOfLoveAndHateDonQuixote.png",
 };
 
 // Sinner icons
@@ -126,7 +132,8 @@ const banners = {
         "LCB Sinner Meursault", "LCB Sinner Rodion", "LCB Sinner Sinclair"
       ]
     },
-    egos: ["4th Match Flame (Ryoshu)"]
+    egos: ["4th Match Flame (Ryoshu)"
+    ]
   },
   Super: {
     name: "Super Banner",
@@ -193,7 +200,10 @@ const banners = {
         "LCB Sinner Meursault", "LCB Sinner Rodion", "LCB Sinner Sinclair"
       ]
     },
-    egos: ["4th Match Flame (Ryoshu)"]
+    egos: [
+      "4th Match Flame (Ryoshu)", "Contempt, Awe (Ryoshu)", "Everlasting (Faust)", "Tears of the Tarnished Blood [汚血泣淚] (Hong Lu)",
+      "Binds (Heathcliff)", "Blind Obession (Ishmael)", "In the Name of Love and Hate (Don Quixote)"
+     ]
   },
   Bokgakwalpurgisnight: {
     name: "1st + 2nd Bokgak Walpurgisnight Targetted Extraction Banner",
@@ -239,6 +249,7 @@ let currentBanner = "standard";
 let state = {
   totalPulls: 0,
   ideality: 0,
+  pulledEGOs: new Set(), // [MOD] Track pulled EGOs
   collection: {
     "3★": new Map(),
     "2★": new Map(),
@@ -246,20 +257,12 @@ let state = {
     "EGO": new Map()
   },
   shards: {
-    "Yi Sang": 0,
-    "Faust": 0,
-    "Don Quixote": 0,
-    "Ryoshu": 0,
-    "Meursault": 0,
-    "Hong Lu": 0,
-    "Heathcliff": 0,
-    "Ishmael": 0,
-    "Rodion": 0,
-    "Sinclair": 0,
-    "Outis": 0,
-    "Gregor": 0
+    "Yi Sang": 0, "Faust": 0, "Don Quixote": 0, "Ryoshu": 0,
+    "Meursault": 0, "Hong Lu": 0, "Heathcliff": 0, "Ishmael": 0,
+    "Rodion": 0, "Sinclair": 0, "Outis": 0, "Gregor": 0
   }
 };
+
 
 // Switch active banner
 function switchBanner(bannerKey) {
@@ -275,18 +278,40 @@ function getRandomFrom(array) {
 
 function pullOnce() {
   const banner = banners[currentBanner];
-  const roll = Math.random();
-  
-  if (roll < banner.rates.ego) {
-    return { type: "EGO", name: getRandomFrom(banner.egos) };
-  } else if (roll < banner.rates.ego + banner.rates.tripleZero) {
+
+  // [MOD] Filter out already pulled EGOs
+  const availableEGOs = banner.egos.filter(e => !state.pulledEGOs.has(e));
+  const hasAvailableEGOs = availableEGOs.length > 0;
+
+  let roll = Math.random();
+
+  if (hasAvailableEGOs && roll < banner.rates.ego) {
+    const chosenEgo = getRandomFrom(availableEGOs);
+    state.pulledEGOs.add(chosenEgo); // [MOD] Record that EGO has been pulled
+    return { type: "EGO", name: chosenEgo };
+  }
+
+  // [MOD] If no EGOs left, reroll based on modified rates
+  if (!hasAvailableEGOs) {
+    // [INSERT YOUR ADJUSTED RATES HERE]
+    // For example:
+    // banner.rates = { tripleZero: 0.06, doubleZero: 0.17, common: 0.77 };
+    // Update this in the code block below as needed.
+    roll = Math.random(); // reroll fresh since ego chance is now excluded
+  }
+
+  const rates = banner.rates;
+  const egoRate = hasAvailableEGOs ? rates.ego : 0; // 0 if no egos left
+
+  if (roll < egoRate + rates.tripleZero) {
     return { type: "3★ ID", name: getRandomFrom(banner.identities["3★"]) };
-  } else if (roll < banner.rates.ego + banner.rates.tripleZero + banner.rates.doubleZero) {
+  } else if (roll < egoRate + rates.tripleZero + rates.doubleZero) {
     return { type: "2★ ID", name: getRandomFrom(banner.identities["2★"]) };
   } else {
     return { type: "1★ ID", name: getRandomFrom(banner.identities["1★"]) };
   }
 }
+
 
 function createCard(pull) {
   const card = document.createElement('div');
@@ -298,26 +323,66 @@ function createCard(pull) {
   card.className = `card ${rarityClass}`;
   card.style.setProperty('--card-bg', `url('${imageMap[pull.name] || FALLBACK_IMAGE}')`);
   
-  const walpurgisnachtIDs = [
-    "W Corp. L3 Cleanup Agent Don Quixote",
-    "Dieci Association South Section 4 Rodion",
-    "Molar Boatworks Fixer Sinclair",
-    "Kurokumo Clan Wakashu Hong Lu"
-    // Add any other IDs that need special borders
+  const walpurgisnacht3starIDS = [
+    //add stuff
+  ]
+
+  const walpurgisnacht2starIDs = [
+    "Hook Office Fixer Hong Lu",
+    "Lobotomy E.G.O::Lantern Don Quixote"
   ];
 
-   const walpurgisnachtEGOs = [
+   const WrathEGOs = [
     "4th Match Flame (Ryoshu)",
+  ];
+  const LustEGOs = [
+    "Contempt, Awe (Ryoshu)",
+  ];
+  const SlothEGOs = [
+    "Everlasting (Faust)", 
+  ];
+  const GluttonyEGOs = [
+    "Tears of the Tarnished Blood [汚血泣淚] (Hong Lu)",
+  ];
+  const GloomEGOs = [
+    "Binds (Heathcliff)", 
+  ];
+  const PrideEGOs = [ 
+    "Blind Obession (Ishmael)",
+  ];
+  const EnvyEGOs = [
+    "In the Name of Love and Hate (Don Quixote)",
   ];
 
   card.className = `card ${rarityClass}`;
+  if (walpurgisnacht3starIDS.includes(pull.name)) {
+    card.classList.add('walpurgisnacht3star-id');
+  }
+  if (walpurgisnacht2starIDs.includes(pull.name)) {
+    card.classList.add('walpurgisnacht2star-id');
+  }
+  else if (WrathEGOs.includes(pull.name)) {
+    card.classList.add('wrath-ego');
+  }
+  else if (LustEGOs.includes(pull.name)) {
+    card.classList.add('lust-ego');
+  }
+  else if (SlothEGOs.includes(pull.name)) {
+    card.classList.add('sloth-ego');
+  }
+  else if (GluttonyEGOs.includes(pull.name)) {
+    card.classList.add('gluttony-ego');
+  }
+  else if (GloomEGOs.includes(pull.name)) {
+    card.classList.add('gloom-ego');
+  }
+  else if (PrideEGOs.includes(pull.name)) {
+    card.classList.add('pride-ego');
+  }
+  else if (EnvyEGOs.includes(pull.name)) {
+    card.classList.add('envy-ego');
+  }
 
-  if (walpurgisnachtIDs.includes(pull.name)) {
-    card.classList.add('walpurgisnacht-id');
-  }
-  else if (walpurgisnachtEGOs.includes(pull.name)) {
-    card.classList.add('walpurgisnacht-ego');
-  }
   card.style.setProperty('--card-bg', `url('${imageMap[pull.name] || FALLBACK_IMAGE}')`);
 
   return card;
