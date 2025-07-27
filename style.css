@@ -82,14 +82,40 @@ body {
   height: 260px;
 }
 
-.walpurgisnacht {
-  border-color: #48ff00 !important; /* Purple border color */
-  box-shadow: 0 0 10px #48ff00 !important; /* Optional glow effect */
+.card.walpurgisnacht3star-id {
+  border-color: #48ff00 !important; 
 }
 
-.walpurgisnacht-ego {
-  border-color: #e74c3c !important; 
-  box-shadow: 0 0 15px rgba(231, 76, 60, 0.7) 
+.card.walpurgisnacht2star-id {
+  border-color: #00ff00b9 !important; 
+}
+
+.card.ego.wrath-ego {
+  border-color: #ff0000 !important;
+}
+
+.card.ego.lust-ego {
+  border-color: #ff9d00 !important;
+}
+
+.card.ego.sloth-ego {
+  border-color: #ffff00 !important;
+}
+
+.card.ego.gluttony-ego {
+  border-color: #00ff00 !important;
+}
+
+.card.ego.gloom-ego {
+  border-color: #00ffff !important;
+}
+
+.card.pride-ego {
+  border-color: #0000ff !important;
+}
+
+.card.envy-ego {
+  border-color: #9d00ff !important;
 }
 
 .ego { border-color: #ffe100; }
