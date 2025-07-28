@@ -293,10 +293,7 @@ function pullOnce() {
 
   // [MOD] If no EGOs left, reroll based on modified rates
   if (!hasAvailableEGOs) {
-    // [INSERT YOUR ADJUSTED RATES HERE]
-    // For example:
-    // banner.rates = { tripleZero: 0.06, doubleZero: 0.17, common: 0.77 };
-    // Update this in the code block below as needed.
+    banner.rates = {tripleZero: 0.03, doubleZero: 0.13, common: 0.84};
     roll = Math.random(); // reroll fresh since ego chance is now excluded
   }
 
