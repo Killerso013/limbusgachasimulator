@@ -91,31 +91,31 @@ body {
 }
 
 .card.ego.wrath-ego {
-  border-color: #ff0000 !important;
+  border-color: #ca0805 !important;
 }
 
 .card.ego.lust-ego {
-  border-color: #ff9d00 !important;
+  border-color: #eb5e00 !important;
 }
 
 .card.ego.sloth-ego {
-  border-color: #ffff00 !important;
+  border-color: #e2b425 !important;
 }
 
 .card.ego.gluttony-ego {
-  border-color: #00ff00 !important;
+  border-color: #619e00 !important;
 }
 
 .card.ego.gloom-ego {
-  border-color: #00ffff !important;
+  border-color: #0a97ba !important;
 }
 
 .card.pride-ego {
-  border-color: #0000ff !important;
+  border-color: #002b7d!important;
 }
 
 .card.envy-ego {
-  border-color: #9d00ff !important;
+  border-color: #54007e !important;
 }
 
 .ego { border-color: #ffe100; }
