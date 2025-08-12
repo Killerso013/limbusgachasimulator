@@ -168,7 +168,7 @@ const imageMap = {
   "9:2 (Faust)": "Images/EGO/Lust/NineTwoFaust.png",
   "Lifetime Stew (Don Quixote)": "Images/EGO/Lust/LifetimeStewDonQuixote.png",
   "Yearning-Mircalla (Don Quixote)": "Images/EGO/Lust/YearningMircallaDonQuixote.png",
-  "Red Eyes Ryoshu": "Images/EGO/Lust/RedEyesRyoshu.png",
+  "Red Eyes (Ryoshu)": "Images/EGO/Lust/RedEyesRyoshu.png",
   "Contempt, Awe (Ryoshu)": "Images/EGO/Lust/ContemptAweRyoshu.png",
   "Yearning-Mircalla (Meursault)": "Images/EGO/Lust/YearningMircallaMeursault.png",
   "Roseate Desire (Hong Lu)": "Images/EGO/Lust/RoseateDesireHongLu.png",
