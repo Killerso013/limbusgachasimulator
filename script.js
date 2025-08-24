@@ -42,6 +42,7 @@ const imageMap = {
   "District 20 Yurodivy Hong Lu": "Images/Identities/HongLu/YurodivyHongLu.png",
   "Full-Stop Office Rep Hong Lu": "Images/Identities/HongLu/FullStopHongLu.png",
   "R Corp. 4th Pack Reindeer Hong Lu": "Images/Identities/HongLu/RCorpHongLu.png",
+  "The Lord of Hongyuan Hong Lu": "Images/Identities/HongLu/LordHongLu.png",
   "R Corp. 4th Pack Rabbit Heathcliff": "Images/Identities/Heathcliff/RCorpHeathcliff.png",
   "Lobotomy E.G.O::Sunshower Heathcliff": "Images/Identities/Heathcliff/SunshowerHeathcliff.png",
   "The Pequod Harpooner Heathcliff": "Images/Identities/Heathcliff/PequodHeathcliff.png",
@@ -168,7 +169,7 @@ const imageMap = {
   "9:2 (Faust)": "Images/EGO/Lust/NineTwoFaust.png",
   "Lifetime Stew (Don Quixote)": "Images/EGO/Lust/LifetimeStewDonQuixote.png",
   "Yearning-Mircalla (Don Quixote)": "Images/EGO/Lust/YearningMircallaDonQuixote.png",
-  "Red Eyes (Ryoshu)": "Images/EGO/Lust/RedEyesRyoshu.png",
+  "Red Eyes Ryoshu": "Images/EGO/Lust/RedEyesRyoshu.png",
   "Contempt, Awe (Ryoshu)": "Images/EGO/Lust/ContemptAweRyoshu.png",
   "Yearning-Mircalla (Meursault)": "Images/EGO/Lust/YearningMircallaMeursault.png",
   "Roseate Desire (Hong Lu)": "Images/EGO/Lust/RoseateDesireHongLu.png",
@@ -302,6 +303,7 @@ const banners = {
           {name: "K Corp. Class 3 Excision Staff Hong Lu", weight: 1},
           {name: "Dieci Association South Section 4 Hong Lu", weight: 1},
           {name: "R Corp. 4th Pack Reindeer Hong Lu", weight: 1},
+          {name: "The Lord of Hongyuan Hong Lu", weight: 1},
           {name: "R Corp. 4th Pack Rabbit Heathcliff", weight: 1},
           {name: "Lobotomy E.G.O::Sunshower Heathcliff", weight: 1},
           {name: "The Pequod Harpooner Heathcliff", weight: 1},
@@ -397,7 +399,7 @@ const banners = {
       ]
     },
     egos: [
-                { name: "Contempt, Awe (Ryoshu)", weight: 1 },
+          { name: "Contempt, Awe (Ryoshu)", weight: 1 },
           { name: "Crushbound Past (Meursault", weight: 1 },
           { name: "Indicant's Trial (Rodion)", weight: 1 },
           { name: "Garden Of Thorns (Gregor)", weight: 1 },
@@ -470,6 +472,7 @@ const banners = {
           {name: "District 20 Yurodivy Hong Lu", weight: 1},
           {name: "Full-Stop Office Rep Hong Lu", weight: 1},
           {name: "R Corp. 4th Pack Reindeer Hong Lu", weight: 1},
+          {name: "The Lord of Hongyuan Hong Lu", weight: 1},
           {name: "R Corp. 4th Pack Rabbit Heathcliff", weight: 1},
           {name: "Lobotomy E.G.O::Sunshower Heathcliff", weight: 1},
           {name: "The Pequod Harpooner Heathcliff", weight: 1},
@@ -671,20 +674,20 @@ const banners = {
           {name: "Dimension Shredder (Outis)", weight: 1}
      ]
   },
-  TargetExtractionYiSang: {
-    name: "Target Extraction Yi Sang",
+  TargetExtractionHeishouPack: {
+    name: "Target Extraction Heishou Pack",
     rates: { ego: 0.013, tripleZero: 0.029, doubleZero: 0.128, common: 0.83},
     identities: {
       "3★": [
-        {name: "Blade Lineage Salsu Yi Sang", weight: 9.5},
-        {name: "Effloresced E.G.O::Spicebush Yi Sang", weight: 9.5},
-        {name: "W Corp. L3 Cleanup Agent Yi Sang", weight: 9.5},
-        {name: "The Ring Pointilist Student Yi Sang", weight: 9.5},
-        {name: "Liu Association South Section 3 Yi Sang", weight: 9.5},
-        {name: "N Corp. E.G.O::Fell Bullet Yi Sang", weight: 9.5},
+        {name: "Blade Lineage Salsu Yi Sang", weight: 1},
+        {name: "Effloresced E.G.O::Spicebush Yi Sang", weight: 1},
+        {name: "W Corp. L3 Cleanup Agent Yi Sang", weight: 1},
+        {name: "The Ring Pointilist Student Yi Sang", weight: 1},
+        {name: "Liu Association South Section 3 Yi Sang", weight: 1},
+        {name: "N Corp. E.G.O::Fell Bullet Yi Sang", weight: 1},
         {name: "The One Who Grips Faust", weight: 1},
         {name: "Seven Association South Section 4 Faust", weight: 1},
-        {name: "Heishou Pack - Mao Branch Adept Faust", weight: 1},
+        {name: "Heishou Pack - Mao Branch Adept Faust", weight: 12.18},
         {name: "W Corp. L3 Cleanup Agent Don Quixote", weight: 1},
         {name: "Cinq Association South Section 5 Director Don Quixote", weight: 1},
         {name: "The Middle Little Sister Don Quixote", weight: 1},
@@ -694,6 +697,7 @@ const banners = {
         {name: "Kurokumo Clan Wakashu Ryoshu", weight: 1},
         {name: "Edgar Family Chief Butler Ryoshu", weight: 1},  
         {name: "W Corp. L3 Cleanup Agent Ryoshu", weight: 1},
+        {name: "Heishou Pack - Mao Branch Ryoshu", weight: 1},
         {name: "W Corp. L2 Cleanup Agent Meursault", weight: 1},
         {name: "N Corp. Großhammer Meursault", weight: 1},
         {name: "R Corp. 4th Pack Rhino Meursault", weight: 1},
@@ -704,6 +708,7 @@ const banners = {
         {name: "K Corp. Class 3 Excision Staff Hong Lu", weight: 1},
         {name: "Dieci Association South Section 4 Hong Lu", weight: 1},
         {name: "R Corp. 4th Pack Reindeer Hong Lu", weight: 1},
+        {name: "The Lord of Hongyuan Hong Lu", weight: 1},
         {name: "R Corp. 4th Pack Rabbit Heathcliff", weight: 1},
         {name: "Lobotomy E.G.O::Sunshower Heathcliff", weight: 1},
         {name: "The Pequod Harpooner Heathcliff", weight: 1},
@@ -720,7 +725,7 @@ const banners = {
         {name: "Liu Association South Section 4 Director Rodion", weight: 1},
         {name: "Devyat Association North Section 3 Rodion", weight: 1},
         {name: "The Princess Of La Manchaland Rodion", weight: 1},
-        {name: "Heishou Pack - Si Branch Rodion", weight: 1},
+        {name: "Heishou Pack - Si Branch Rodion", weight: 12.18},
         {name: "Blade Lineage Salsu Sinclair", weight: 1},
         {name: "The One Who Shall Grip Sinclair", weight: 1},
         {name: "Cinq Association South Section 4 Director Sinclair", weight: 1},
@@ -732,13 +737,14 @@ const banners = {
         {name: "W Corp. L3 Cleanup Captain Outis", weight: 1},
         {name: "The Barber of La Manchaland Outis", weight: 1},
         {name: "T Corp. Class 3 VDCU Staff Outis", weight: 1},
+        {name: "Heishou Pack - Mao Branch Outis", weight: 12.18},
         {name: "G Corp. Manager Corporal Gregor", weight: 1},
         {name: "Zwei Association South Section 4 Gregor", weight: 1},
         {name: "Twinhook Pirates First Mate Gregor", weight: 1},
         {name: "Edgar Family Heir Gregor", weight: 1},
         {name: "The Priest of La Manchaland Gregor", weight: 1},
         {name: "Firefist Office Survivor Gregor", weight: 1},
-        {name: "Heishou Pack - Si Branch Gregor", weight: 1}
+        {name: "Heishou Pack - Si Branch Gregor", weight: 12.18}
         ],
       "2★": [
         {name: "Rosespanner Workshop Fixer Gregor", weight: 1},
@@ -779,14 +785,14 @@ const banners = {
         {name: "Lobotomy Corporation Remanant Faust", weight: 1},
         {name: "W Corp. L2 Cleanup Agent Faust", weight: 1},
         {name: "Zwei Association South Section 4 Faust", weight: 1},
-        {name: "Dieci Association South Section 4 Yi Sang", weight: 7.6},
-        {name: "Seven Association South Section 6 Yi Sang", weight: 7.6},
-        {name: "The Pequod First Mate Yi Sang", weight: 7.6},
-        {name: "Molar Office Fixer Yi Sang", weight: 7.6},
-        {name: "LCE E.G.O::Lantern Yi Sang", weight: 7.6}
+        {name: "Dieci Association South Section 4 Yi Sang", weight: 1},
+        {name: "Seven Association South Section 6 Yi Sang", weight: 1},
+        {name: "The Pequod First Mate Yi Sang", weight: 1},
+        {name: "Molar Office Fixer Yi Sang", weight: 1},
+        {name: "LCE E.G.O::Lantern Yi Sang", weight: 1}
       ],
       "1★": [
-        {name: "LCB Sinner Yi Sang", weight: 11},
+        {name: "LCB Sinner Yi Sang", weight: 1},
         {name: "LCB Sinner Faust", weight: 1},
         {name: "LCB Sinner Don Quixote", weight: 1},
         {name: "LCB Sinner Ryoshu", weight: 1},
@@ -805,8 +811,8 @@ const banners = {
       {name:"Crushbound Past (Meursault)", weight: 1},
       {name:"Indicant's Trial (Rodion)", weight: 1},
       {name:"Garden Of Thorns (Gregor)", weight: 1},
-      {name:"Dimension Shredder (Yi Sang)", weight: 8},
-      {name:"Fell Bullet (Yi Sang)", weight: 8},
+      {name:"Dimension Shredder (Yi Sang)", weight: 1},
+      {name:"Fell Bullet (Yi Sang)", weight: 1},
       {name:"Telepole (Faust)", weight: 1},
       {name:"Thoracalgia (Faust)", weight: 1},
       {name:"Telepole (Don Quixote)", weight: 1},
@@ -829,12 +835,11 @@ const banners = {
       {name:"Cavernous Wailing (Sinclair)", weight: 1}
     ]
   },
-  TimeKillingTimeBokgak: {
-    name: "Time Killing Time New Target Identity & E.G.O Extraction",
+  LordofHongyuan: {
+    name: "The Lord of Hongyuan Target Extraction",
     rates: { ego: 0.02, tripleZero: 0.03, doubleZero: 0.10, common: 0.85 },
     identities: {
       "3★": [
-        {name:"T Corp. Class 3 VDCU Staff Outis", weight: 61.97},
         {name:"Blade Lineage Salsu Yi Sang", weight: 1},
         {name: "Effloresced E.G.O::Spicebush Yi Sang", weight: 1},
         {name: "W Corp. L3 Cleanup Agent Yi Sang", weight: 1},
@@ -863,6 +868,7 @@ const banners = {
         {name: "K Corp. Class 3 Excision Staff Hong Lu", weight: 1},
         {name: "Dieci Association South Section 4 Hong Lu", weight: 1},
         {name: "R Corp. 4th Pack Reindeer Hong Lu", weight: 1},
+        {name: "The Lord of Hongyuan Hong Lu", weight: 63.04},
         {name: "R Corp. 4th Pack Rabbit Heathcliff", weight: 1},
         {name: "Lobotomy E.G.O::Sunshower Heathcliff", weight: 1},
         {name: "The Pequod Harpooner Heathcliff", weight: 1},
@@ -890,6 +896,7 @@ const banners = {
         {name: "Wuthering Heights Chief Butler Outis", weight: 1},
         {name: "W Corp. L3 Cleanup Captain Outis", weight: 1},
         {name: "The Barber of La Manchaland Outis", weight: 1},
+        {name: "T Corp. Class 3 VDCU Staff Outis", weight: 1},
         {name: "G Corp. Manager Corporal Gregor", weight: 1},
         {name: "Zwei Association South Section 4 Gregor", weight: 1},
         {name: "Twinhook Pirates First Mate Gregor", weight: 1},
@@ -958,7 +965,7 @@ const banners = {
     },
     egos: [
       {name:"Contempt, Awe (Ryoshu)", weight: 1},
-      {name:"Crushbound Past (Meursault)", weight: 26},
+      {name:"Crushbound Past (Meursault)", weight: 1},
       {name:"Indicant's Trial (Rodion)", weight: 1},
       {name:"Garden Of Thorns (Gregor)", weight: 1},
       {name:"Dimension Shredder (Yi Sang)", weight: 1},
