@@ -10,7 +10,7 @@ const imageMap = {
   "Lobotomy E.G.O::Solemn Lament Yi Sang": "Images/Identities/YiSang/SolemnLamentYiSang.png",
   "Liu Association South Section 3 Yi Sang": "Images/Identities/YiSang/LiuYiSang.png",
   "N Corp. E.G.O::Fell Bullet Yi Sang": "Images/Identities/YiSang/FellBulletYiSang.png",
-  "Heishou Pack - Wu Branch Adept Yi Sang": "Images/Identities/Yisang/WuYiSang.png",
+  "Heishou Pack - Wu Branch Adept Yi Sang": "Images/Identities/YiSang/WuYiSang.png",
   "The One Who Grips Faust": "Images/Identities/Faust/KromerFaust.png",
   "Seven Association South Section 4 Faust": "Images/Identities/Faust/SevenFaust.png",
   "Lobotomy E.G.O::Regret Faust": "Images/Identities/Faust/RegretFaust.png",
@@ -1543,3 +1543,4 @@ window.addEventListener('DOMContentLoaded', () => {
   switchBanner("standard");
 });
 })
+
