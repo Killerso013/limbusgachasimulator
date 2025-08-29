@@ -1,3 +1,4 @@
+
 // Image mapping
 const imageMap = {
   // 3★ IDs
@@ -9,6 +10,7 @@ const imageMap = {
   "Lobotomy E.G.O::Solemn Lament Yi Sang": "Images/Identities/YiSang/SolemnLamentYiSang.png",
   "Liu Association South Section 3 Yi Sang": "Images/Identities/YiSang/LiuYiSang.png",
   "N Corp. E.G.O::Fell Bullet Yi Sang": "Images/Identities/YiSang/FellBulletYiSang.png",
+  "Heishou Pack - Wu Branch Adept Yi Sang": "Images/Identities/Yisang/WuYiSang.png",
   "The One Who Grips Faust": "Images/Identities/Faust/KromerFaust.png",
   "Seven Association South Section 4 Faust": "Images/Identities/Faust/SevenFaust.png",
   "Lobotomy E.G.O::Regret Faust": "Images/Identities/Faust/RegretFaust.png",
@@ -72,6 +74,7 @@ const imageMap = {
   "Devyat Association North Section 3 Sinclair": "Images/Identities/Sinclair/DevyatSinclair.png",
   "The Middle Little Brother Sinclair": "Images/Identities/Sinclair/MiddleSinclair.png",
   "The Thumb East Soldato II Sinclair": "Images/Identities/Sinclair/SoldatoSinclair.png",
+  "Heishou Pack - You Branch Sinclair": "Images/Identities/Sinclair/YouSinclair.png",
   "Seven Association South Section 6 Director Outis": "Images/Identities/Outis/SevenOutis.png",
   "Molar Office Fixer Outis": "Images/Identities/Outis/MolarOutis.png",
   "Lobotomy E.G.O::Magic Bullet Outis": "Images/Identities/Outis/MagicBulletOutis.png",
@@ -281,6 +284,7 @@ const banners = {
           {name: "The Ring Pointilist Student Yi Sang", weight: 1},
           {name: "Liu Association South Section 3 Yi Sang", weight: 1},
           {name: "N Corp. E.G.O::Fell Bullet Yi Sang", weight: 1},
+          {name: "Heishou Pack - Wu Branch Adept Yi Sang", weight: 1},
           {name: "The One Who Grips Faust", weight: 1},
           {name: "Seven Association South Section 4 Faust", weight: 1},
           {name: "Heishou Pack - Mao Branch Adept Faust", weight: 1},
@@ -439,6 +443,7 @@ const banners = {
           {name: "Liu Association South Section 3 Yi Sang", weight: 1},
           {name: "N Corp. E.G.O::Fell Bullet Yi Sang", weight: 1},
           {name: "Blade Lineage Salsu Yi Sang", weight: 1},
+          {name: "Heishou Pack - Wu Branch Adept Yi Sang", weight: 1},
           {name: "The One Who Grips Faust", weight: 1},
           {name: "Seven Association South Section 4 Faust", weight: 1},
           {name: "Lobotomy E.G.O::Regret Faust", weight: 1},
@@ -502,6 +507,7 @@ const banners = {
           {name: "Devyat Association North Section 3 Sinclair", weight: 1},
           {name: "The Middle Little Brother Sinclair", weight: 1},
           {name: "The Thumb East Soldato II Sinclair", weight: 1},
+          {name: "Heishou Pack - You Branch Sinclair", weight: 1},
           {name: "Seven Association South Section 6 Director Outis", weight: 1},
           {name: "Molar Office Fixer Outis", weight: 1},
           {name: "Lobotomy E.G.O::Magic Bullet Outis", weight: 1},
@@ -674,8 +680,8 @@ const banners = {
           {name: "Dimension Shredder (Outis)", weight: 1}
      ]
   },
-  TargetExtractionHeishouPack: {
-    name: "Target Extraction Heishou Pack",
+  SpringCultivationBanner: {
+    name: "Spring Cultivation New Identity Target Extraction",
     rates: { ego: 0.013, tripleZero: 0.029, doubleZero: 0.128, common: 0.83},
     identities: {
       "3★": [
@@ -685,9 +691,10 @@ const banners = {
         {name: "The Ring Pointilist Student Yi Sang", weight: 1},
         {name: "Liu Association South Section 3 Yi Sang", weight: 1},
         {name: "N Corp. E.G.O::Fell Bullet Yi Sang", weight: 1},
+        {name: "Heishou Pack - Wu Branch Adept Yi Sang", weight: 63.87},
         {name: "The One Who Grips Faust", weight: 1},
         {name: "Seven Association South Section 4 Faust", weight: 1},
-        {name: "Heishou Pack - Mao Branch Adept Faust", weight: 12.18},
+        {name: "Heishou Pack - Mao Branch Adept Faust", weight: 1},
         {name: "W Corp. L3 Cleanup Agent Don Quixote", weight: 1},
         {name: "Cinq Association South Section 5 Director Don Quixote", weight: 1},
         {name: "The Middle Little Sister Don Quixote", weight: 1},
@@ -725,7 +732,7 @@ const banners = {
         {name: "Liu Association South Section 4 Director Rodion", weight: 1},
         {name: "Devyat Association North Section 3 Rodion", weight: 1},
         {name: "The Princess Of La Manchaland Rodion", weight: 1},
-        {name: "Heishou Pack - Si Branch Rodion", weight: 12.18},
+        {name: "Heishou Pack - Si Branch Rodion", weight: 1},
         {name: "Blade Lineage Salsu Sinclair", weight: 1},
         {name: "The One Who Shall Grip Sinclair", weight: 1},
         {name: "Cinq Association South Section 4 Director Sinclair", weight: 1},
@@ -737,14 +744,14 @@ const banners = {
         {name: "W Corp. L3 Cleanup Captain Outis", weight: 1},
         {name: "The Barber of La Manchaland Outis", weight: 1},
         {name: "T Corp. Class 3 VDCU Staff Outis", weight: 1},
-        {name: "Heishou Pack - Mao Branch Outis", weight: 12.18},
+        {name: "Heishou Pack - Mao Branch Outis", weight: 1},
         {name: "G Corp. Manager Corporal Gregor", weight: 1},
         {name: "Zwei Association South Section 4 Gregor", weight: 1},
         {name: "Twinhook Pirates First Mate Gregor", weight: 1},
         {name: "Edgar Family Heir Gregor", weight: 1},
         {name: "The Priest of La Manchaland Gregor", weight: 1},
         {name: "Firefist Office Survivor Gregor", weight: 1},
-        {name: "Heishou Pack - Si Branch Gregor", weight: 12.18}
+        {name: "Heishou Pack - Si Branch Gregor", weight: 1}
         ],
       "2★": [
         {name: "Rosespanner Workshop Fixer Gregor", weight: 1},
@@ -835,8 +842,8 @@ const banners = {
       {name:"Cavernous Wailing (Sinclair)", weight: 1}
     ]
   },
-  LordofHongyuan: {
-    name: "The Lord of Hongyuan Target Extraction",
+  TargetExtractionIshmaelBanner: {
+    name: "Target Extraction Ishmael",
     rates: { ego: 0.02, tripleZero: 0.03, doubleZero: 0.10, common: 0.85 },
     identities: {
       "3★": [
@@ -874,11 +881,13 @@ const banners = {
         {name: "The Pequod Harpooner Heathcliff", weight: 1},
         {name: "Öufi Association South Section 3 Heathcliff", weight: 1},
         {name: "Wild Hunt Heathcliff", weight: 1},
-        {name: "R Corp. 4th Pack Reindeer Ishmael", weight: 1},
-        {name: "Liu Association South Section 4 Ishmael", weight: 1},
-        {name: "The Pequod Captain Ishmael", weight: 1},
-        {name: "Zwei Association West Section 3 Ishmael", weight: 1},
-        {name: "Family Hierarch Candidate Ishmael", weight: 1}, 
+        {name: "R Corp. 4th Pack Reindeer Ishmael", weight: 8.56},
+        {name: "Liu Association South Section 4 Ishmael", weight: 8.56},
+        {name: "Molar Boatworks Fixer Ishmael", weight: 8.56},
+        {name: "The Pequod Captain Ishmael", weight: 8.56},
+        {name: "Zwei Association West Section 3 Ishmael", weight: 8.56},
+        {name: "Kurokumo Clan Captain Ishmael", weight: 8.56},
+        {name: "Family Hierarch Candidate Ishmael", weight: 8.56}, 
         {name: "Kurokumo Clan Wakashu Rodion", weight: 1},
         {name: "Rosespanner Workshop Rep Rodion", weight: 1},
         {name: "Dieci Association South Section 4 Rodion", weight: 1},
@@ -920,10 +929,10 @@ const banners = {
         {name: "N Corp. Mittlehammer Rodion", weight: 1},
         {name: "Zwei Association South Section 5 Rodion", weight: 1},
         {name: "T Corp. Class 2 Collection Staff Rodion", weight: 1},
-        {name: "Shi Association South Section 5 Ishmael", weight: 1},
-        {name: "LCCB Assistant Manager Ishmael", weight: 1},
-        {name: "Lobotomy E.G.O::Sloshing Ishmael", weight: 1},
-        {name: "Edgar Family Butler Ishmael", weight: 1},
+        {name: "Shi Association South Section 5 Ishmael", weight: 9.25},
+        {name: "LCCB Assistant Manager Ishmael", weight: 9.25},
+        {name: "Lobotomy E.G.O::Sloshing Ishmael", weight: 9.25},
+        {name: "Edgar Family Butler Ishmael", weight: 9.25},
         {name: "Shi Association South Section 5 Heathcliff", weight: 1},
         {name: "N Corp. Kleinhammer Heathcliff", weight: 1},
         {name: "Seven Association South Section 4 Heathcliff", weight: 1},
@@ -978,7 +987,8 @@ const banners = {
       {name:"Dimension Shredder (Hong Lu)", weight: 1},
       {name:"Ya Śūnyatā Tad Rūpam (Heathcliff)", weight: 1},
       {name:"Asymmetrical Inertia (Heathcliff)", weight: 1},
-      {name:"Ardor Blossom Star (Ishmael)", weight: 1},
+      {name:"Ardor Blossom Star (Ishmael)", weight: 8.33},
+      {name:"Christmas Nightmare (Ishmael)", weight: 8.33},
       {name:"Pursuance (Rodion)", weight: 1},
       {name:"Lantern (Sinclair)", weight: 1},
       {name:"Wishing Cairn (Yi Sang)", weight: 1},
